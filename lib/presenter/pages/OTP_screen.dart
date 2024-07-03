@@ -161,6 +161,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
+                  elevation: 0,
                   minimumSize: Size(MediaQuery.of(context).size.width * 1, 40),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),

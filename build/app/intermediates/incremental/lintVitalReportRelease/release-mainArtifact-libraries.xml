@@ -1,8 +1,8 @@
 <libraries>
   <library
-      name="__local_aars__:/Users/vaibhavbhatt/INDEPAY/nxcar/build/app/intermediates/flutter/release/libs.jar:unspecified@jar"
-      jars="/Users/vaibhavbhatt/INDEPAY/nxcar/build/app/intermediates/flutter/release/libs.jar"
-      resolved="__local_aars__:/Users/vaibhavbhatt/INDEPAY/nxcar/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
+      name="__local_aars__:/Users/vaibhavbhatt/vaibhav_personal/assignments/nxcar/build/app/intermediates/flutter/release/libs.jar:unspecified@jar"
+      jars="/Users/vaibhavbhatt/vaibhav_personal/assignments/nxcar/build/app/intermediates/flutter/release/libs.jar"
+      resolved="__local_aars__:/Users/vaibhavbhatt/vaibhav_personal/assignments/nxcar/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
   <library
       name="io.flutter:flutter_embedding_release:1.0.0-1a65d409c7a1438a34d21b60bf30a6fd5db59314@jar"
       jars="/Users/vaibhavbhatt/.gradle/caches/modules-2/files-2.1/io.flutter/flutter_embedding_release/1.0.0-1a65d409c7a1438a34d21b60bf30a6fd5db59314/88383da8418511a23e318ac08cd9846f983bbde0/flutter_embedding_release-1.0.0-1a65d409c7a1438a34d21b60bf30a6fd5db59314.jar"

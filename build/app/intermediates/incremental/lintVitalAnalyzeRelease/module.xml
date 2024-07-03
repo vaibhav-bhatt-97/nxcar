@@ -1,11 +1,11 @@
 <lint-module
     format="1"
-    dir="/Users/vaibhavbhatt/INDEPAY/nxcar/android/app"
+    dir="/Users/vaibhavbhatt/vaibhav_personal/assignments/nxcar/android/app"
     name=":app"
     type="APP"
     maven="android:app:"
     gradle="7.2.0"
-    buildFolder="/Users/vaibhavbhatt/INDEPAY/nxcar/build/app"
+    buildFolder="/Users/vaibhavbhatt/vaibhav_personal/assignments/nxcar/build/app"
     bootClassPath="/Users/vaibhavbhatt/Library/Android/sdk/platforms/android-33/android.jar:/Users/vaibhavbhatt/Library/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar"
     javaSourceLevel="1.8"
     compileTarget="android-33">

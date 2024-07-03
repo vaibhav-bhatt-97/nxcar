@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nxcar/constants/nx_colors.dart';
 import 'package:nxcar/data/models/onboarding_content.dart';
+import 'package:nxcar/presenter/pages/onboarding_animation.dart';
 import 'package:nxcar/presenter/pages/signup_view.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -26,11 +27,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         image: "lib/assets/images/Welcome Screen 3.png"),
   ];
   int currentIndex = 0;
-
   @override
   void initState() {
-    _controller = PageController(initialPage: 0); // Initialize PageController with the initial page
-    _startAutoScroll(); // Start automatic scrolling
+    _controller = PageController(
+        initialPage: 0); // Initialize PageController with the initial page
+    // _startAutoScroll(); // Start automatic scrolling
     super.initState();
   }
 
@@ -64,35 +65,64 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(top: 50.0),
-              child: PageView.builder(
-                controller: _controller,
-                physics: const BouncingScrollPhysics(), // Bouncy scroll physics
-                itemCount: contentList.length,
-                onPageChanged: (int index) {
-                  setState(() {
-                    currentIndex = index; // Update currentIndex when the page changes
-                  });
-                },
-                itemBuilder: (_, index) => Column(
-                  children: [
-                    Image.asset(
-                      contentList[index].image!,
-                      height: MediaQuery.of(context).size.height * .63,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      contentList[index].title!,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, bottom: 16),
+                      child: Image.asset(
+                        "lib/assets/images/logo.png",
+                        height: 22.5,
+                        width: 101,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  OnBoardingAnimation(
+                    currentIndex: currentIndex,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    contentList[currentIndex].title!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
+              // PageView.builder(
+              //   controller: _controller,
+              //   physics: const BouncingScrollPhysics(), // Bouncy scroll physics
+              //   itemCount: contentList.length,
+              //   onPageChanged: (int index) {
+              //     setState(() {
+              //       currentIndex = index; // Update currentIndex when the page changes
+              //     });
+              //   },
+              //   itemBuilder: (_, index) => Column(
+              //     children: [
+              //       Image.asset(
+              //         contentList[index].image!,
+              //         height: MediaQuery.of(context).size.height * .63,
+              //       ),
+              //       const SizedBox(
+              //         height: 20,
+              //       ),
+              //       Text(
+              //         contentList[index].title!,
+              //         textAlign: TextAlign.center,
+              //         style: const TextStyle(
+              //           fontSize: 28,
+              //           fontWeight: FontWeight.w600,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ),
           ),
           Padding(
@@ -103,15 +133,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   child: Row(
                     children: List.generate(
                       contentList.length,
-                          (index) => AnimatedContainer(
+                      (index) => AnimatedContainer(
                         duration: const Duration(milliseconds: 240),
                         height: 12,
-                        width: currentIndex == index ? 40 : 12, // Animate width change based on currentIndex
+                        width: currentIndex == index
+                            ? 40
+                            : 12, // Animate width change based on currentIndex
                         margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
                           color: currentIndex == index
                               ? NXColors.primary
-                              : NXColors.disabled, // Change color based on currentIndex
+                              : NXColors
+                                  .disabled, // Change color based on currentIndex
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -121,17 +154,26 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 ElevatedButton(
                   onPressed: () {
                     print("Go to next screen");
-                    _timer.cancel(); // Cancel the timer before navigating
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const SignUpView(),
-                      ),
-                    ).then((value) {
-                      if (value == null) {
-                        _startAutoScroll(); // Restart auto scroll when coming back from the next screen
-                      }
-                    });
+                    // _timer.cancel(); // Cancel the timer before navigating
+                    if (currentIndex < 2) {
+                      setState(() {
+                        currentIndex += 1;
+                      });
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const SignUpView(),
+                        ),
+                      ).then((value) {
+                        if (value == null) {
+                          // _startAutoScroll(); // Restart auto scroll when coming back from the next screen
+                          setState(() {
+                            currentIndex = 0;
+                          });
+                        }
+                      });
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
